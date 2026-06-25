@@ -49,3 +49,17 @@ class MeasureReport(BaseModel):
     )
     def _ser_fraction(self, value: Fraction) -> str:
         return str(value)
+
+
+class ScoreReport(BaseModel):
+    """The verdict on a whole score: one MeasureReport per measure plus the
+    rolled-up answer the pipeline keys off.
+
+    `valid` is true only when every measure is valid. `invalid_measure_numbers`
+    is the quick worklist for the correction UI - the measure numbers a human
+    needs to look at, in order.
+    """
+
+    valid: bool
+    invalid_measure_numbers: list[int]
+    measures: list[MeasureReport]

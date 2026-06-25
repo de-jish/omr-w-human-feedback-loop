@@ -13,8 +13,10 @@ from typing import Any, Callable
 
 import pytest
 
-from model.score import Measure, MeasureContext
-from validation import validate_measure
+from collections import Counter
+
+from model.score import Measure, MeasureContext, Score
+from validation import validate_measure, validate_score
 from evals.harness import load_cases
 
 CASES_DIR = Path(__file__).parent / "cases"
@@ -23,15 +25,31 @@ CASES_DIR = Path(__file__).parent / "cases"
 # validation/ grows more public functions.
 FUNCTIONS: dict[str, Callable[..., Any]] = {
     "validate_measure": validate_measure,
+    "validate_score": validate_score,
 }
 
 
-def _build_inputs(case_input: dict[str, Any]) -> dict[str, Any]:
-    """Turn a case's raw `input` dict into typed model objects."""
+def _inputs_for_validate_measure(raw: dict[str, Any]) -> dict[str, Any]:
     return {
-        "measure": Measure(**case_input["measure"]),
-        "context": MeasureContext(**case_input["context"]),
+        "measure": Measure(**raw["measure"]),
+        "context": MeasureContext(**raw["context"]),
     }
+
+
+def _inputs_for_validate_score(raw: dict[str, Any]) -> dict[str, Any]:
+    return {"score": Score(**raw["score"])}
+
+
+# Each function builds its typed inputs from its own `input` schema.
+INPUT_BUILDERS: dict[str, Callable[[dict[str, Any]], dict[str, Any]]] = {
+    "validate_measure": _inputs_for_validate_measure,
+    "validate_score": _inputs_for_validate_score,
+}
+
+
+def _build_inputs(function: str, case_input: dict[str, Any]) -> dict[str, Any]:
+    """Turn a case's raw `input` dict into typed model objects for `function`."""
+    return INPUT_BUILDERS[function](case_input)
 
 
 _CASES = load_cases(CASES_DIR)
@@ -40,7 +58,7 @@ _CASES = load_cases(CASES_DIR)
 @pytest.mark.parametrize("case", _CASES, ids=[c["_file"] for c in _CASES])
 def test_validation_case(case: dict[str, Any]) -> None:
     fn = FUNCTIONS[case["function"]]
-    kwargs = _build_inputs(case["input"])
+    kwargs = _build_inputs(case["function"], case["input"])
 
     report = fn(**kwargs)
     actual = report.model_dump(mode="json")
@@ -52,6 +70,10 @@ def test_validation_case(case: dict[str, Any]) -> None:
     )
 
 
-def test_at_least_three_cases() -> None:
+def test_at_least_three_cases_per_function() -> None:
     """CLAUDE.md iron rule: every public function ships >= 3 JSON eval cases."""
-    assert len(_CASES) >= 3, f"expected >= 3 validation cases, found {len(_CASES)}"
+    counts = Counter(c["function"] for c in _CASES)
+    for function in FUNCTIONS:
+        assert counts[function] >= 3, (
+            f"{function} has {counts[function]} eval cases, need >= 3"
+        )

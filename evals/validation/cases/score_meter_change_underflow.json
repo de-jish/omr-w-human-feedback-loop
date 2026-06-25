@@ -1,0 +1,73 @@
+{
+  "name": "score_meter_change_underflow",
+  "description": "Measure 2 switches to tenor clef and 3/4 and is short by 1 quarter-note; measure 3 inherits the 3/4 meter and is complete. Exercises carry-forward of a changed time signature plus an underflow.",
+  "function": "validate_score",
+  "input": {
+    "score": {
+      "measures": [
+        {
+          "number": 1,
+          "clef": {"sign": "F", "line": 4},
+          "key": {"fifths": 0},
+          "time": {"numerator": 4, "denominator": 4},
+          "events": [
+            {"kind": "note", "pitch": {"step": "C", "octave": 3}, "duration": {"type": "whole"}}
+          ]
+        },
+        {
+          "number": 2,
+          "clef": {"sign": "C", "line": 4},
+          "time": {"numerator": 3, "denominator": 4},
+          "events": [
+            {"kind": "note", "pitch": {"step": "D", "octave": 3}, "duration": {"type": "quarter"}},
+            {"kind": "note", "pitch": {"step": "E", "octave": 3}, "duration": {"type": "quarter"}}
+          ]
+        },
+        {
+          "number": 3,
+          "events": [
+            {"kind": "note", "pitch": {"step": "F", "octave": 3}, "duration": {"type": "quarter"}},
+            {"kind": "note", "pitch": {"step": "G", "octave": 3}, "duration": {"type": "quarter"}},
+            {"kind": "note", "pitch": {"step": "A", "octave": 3}, "duration": {"type": "quarter"}}
+          ]
+        }
+      ]
+    }
+  },
+  "expected": {
+    "valid": false,
+    "invalid_measure_numbers": [2],
+    "measures": [
+      {
+        "measure_number": 1,
+        "status": "valid",
+        "valid": true,
+        "expected_quarter_length": "4",
+        "actual_quarter_length": "4",
+        "difference": "0",
+        "overflow_event_index": null,
+        "message": "measure 1: 4 == 4 quarter-notes, complete"
+      },
+      {
+        "measure_number": 2,
+        "status": "underflow",
+        "valid": false,
+        "expected_quarter_length": "3",
+        "actual_quarter_length": "2",
+        "difference": "-1",
+        "overflow_event_index": null,
+        "message": "measure 2: 2 < 3 quarter-notes, short by 1"
+      },
+      {
+        "measure_number": 3,
+        "status": "valid",
+        "valid": true,
+        "expected_quarter_length": "3",
+        "actual_quarter_length": "3",
+        "difference": "0",
+        "overflow_event_index": null,
+        "message": "measure 3: 3 == 3 quarter-notes, complete"
+      }
+    ]
+  }
+}

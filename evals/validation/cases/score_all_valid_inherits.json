@@ -1,0 +1,53 @@
+{
+  "name": "score_all_valid_inherits",
+  "description": "Two 4/4 measures; measure 2 inherits clef/key/time from measure 1. Both bars are complete, so the score is valid.",
+  "function": "validate_score",
+  "input": {
+    "score": {
+      "measures": [
+        {
+          "number": 1,
+          "clef": {"sign": "F", "line": 4},
+          "key": {"fifths": 0},
+          "time": {"numerator": 4, "denominator": 4},
+          "events": [
+            {"kind": "note", "pitch": {"step": "C", "octave": 3}, "duration": {"type": "whole"}}
+          ]
+        },
+        {
+          "number": 2,
+          "events": [
+            {"kind": "note", "pitch": {"step": "E", "octave": 3}, "duration": {"type": "half"}},
+            {"kind": "note", "pitch": {"step": "G", "octave": 3}, "duration": {"type": "half"}}
+          ]
+        }
+      ]
+    }
+  },
+  "expected": {
+    "valid": true,
+    "invalid_measure_numbers": [],
+    "measures": [
+      {
+        "measure_number": 1,
+        "status": "valid",
+        "valid": true,
+        "expected_quarter_length": "4",
+        "actual_quarter_length": "4",
+        "difference": "0",
+        "overflow_event_index": null,
+        "message": "measure 1: 4 == 4 quarter-notes, complete"
+      },
+      {
+        "measure_number": 2,
+        "status": "valid",
+        "valid": true,
+        "expected_quarter_length": "4",
+        "actual_quarter_length": "4",
+        "difference": "0",
+        "overflow_event_index": null,
+        "message": "measure 2: 4 == 4 quarter-notes, complete"
+      }
+    ]
+  }
+}

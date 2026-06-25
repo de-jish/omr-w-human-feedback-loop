@@ -11,8 +11,8 @@ from __future__ import annotations
 
 from fractions import Fraction
 
-from model.score import Measure, MeasureContext
-from validation.report import MeasureReport
+from model.score import Measure, MeasureContext, Score
+from validation.report import MeasureReport, ScoreReport
 
 
 def validate_measure(measure: Measure, context: MeasureContext) -> MeasureReport:
@@ -65,4 +65,24 @@ def validate_measure(measure: Measure, context: MeasureContext) -> MeasureReport
         difference=difference,
         overflow_event_index=overflow_event_index,
         message=message,
+    )
+
+
+def validate_score(score: Score) -> ScoreReport:
+    """Validate every measure in a score against the meter in force at it.
+
+    Each measure is checked under its effective context (the clef, key, and time
+    signature carried forward from the last measure that declared them), so a
+    mid-piece time-signature change is honored. Returns a ScoreReport whose
+    `valid` is true only when every measure is valid.
+    """
+    reports = [
+        validate_measure(measure, score.effective_context(index))
+        for index, measure in enumerate(score.measures)
+    ]
+    invalid_measure_numbers = [r.measure_number for r in reports if not r.valid]
+    return ScoreReport(
+        valid=not invalid_measure_numbers,
+        invalid_measure_numbers=invalid_measure_numbers,
+        measures=reports,
     )

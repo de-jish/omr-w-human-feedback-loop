@@ -1,0 +1,54 @@
+{
+  "name": "score_one_overflow",
+  "description": "Two 4/4 measures; the second sums to 5 quarter-notes and overflows by 1 (first spilling at event index 2), so the score is invalid and flags measure 2.",
+  "function": "validate_score",
+  "input": {
+    "score": {
+      "measures": [
+        {
+          "number": 1,
+          "clef": {"sign": "F", "line": 4},
+          "key": {"fifths": 0},
+          "time": {"numerator": 4, "denominator": 4},
+          "events": [
+            {"kind": "note", "pitch": {"step": "C", "octave": 3}, "duration": {"type": "whole"}}
+          ]
+        },
+        {
+          "number": 2,
+          "events": [
+            {"kind": "note", "pitch": {"step": "D", "octave": 3}, "duration": {"type": "half"}},
+            {"kind": "note", "pitch": {"step": "E", "octave": 3}, "duration": {"type": "half"}},
+            {"kind": "note", "pitch": {"step": "F", "octave": 3}, "duration": {"type": "quarter"}}
+          ]
+        }
+      ]
+    }
+  },
+  "expected": {
+    "valid": false,
+    "invalid_measure_numbers": [2],
+    "measures": [
+      {
+        "measure_number": 1,
+        "status": "valid",
+        "valid": true,
+        "expected_quarter_length": "4",
+        "actual_quarter_length": "4",
+        "difference": "0",
+        "overflow_event_index": null,
+        "message": "measure 1: 4 == 4 quarter-notes, complete"
+      },
+      {
+        "measure_number": 2,
+        "status": "overflow",
+        "valid": false,
+        "expected_quarter_length": "4",
+        "actual_quarter_length": "5",
+        "difference": "1",
+        "overflow_event_index": 2,
+        "message": "measure 2: 5 > 4 quarter-notes, overflows by 1 at event 2"
+      }
+    ]
+  }
+}
