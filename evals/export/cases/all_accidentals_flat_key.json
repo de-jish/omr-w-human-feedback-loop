@@ -1,0 +1,40 @@
+{
+  "name": "all_accidentals_flat_key",
+  "description": "Treble clef with a three-flat key signature (fifths -3) and every accidental glyph: natural, double-sharp, double-flat, flat.",
+  "function": "score_to_stream",
+  "input": {
+    "score": {
+      "measures": [
+        {
+          "number": 1,
+          "clef": {"sign": "G", "line": 2},
+          "key": {"fifths": -3},
+          "time": {"numerator": 4, "denominator": 4},
+          "events": [
+            {"kind": "note", "pitch": {"step": "B", "octave": 4, "accidental": "natural"}, "duration": {"type": "quarter"}},
+            {"kind": "note", "pitch": {"step": "C", "octave": 5, "accidental": "double-sharp"}, "duration": {"type": "quarter"}},
+            {"kind": "note", "pitch": {"step": "E", "octave": 5, "accidental": "double-flat"}, "duration": {"type": "quarter"}},
+            {"kind": "note", "pitch": {"step": "A", "octave": 4, "accidental": "flat"}, "duration": {"type": "quarter"}}
+          ]
+        }
+      ]
+    }
+  },
+  "expected": {
+    "metadata": null,
+    "measures": [
+      {
+        "number": 1,
+        "clef": {"sign": "G", "line": 2},
+        "key_fifths": -3,
+        "time": {"numerator": 4, "denominator": 4},
+        "events": [
+          {"kind": "note", "step": "B", "octave": 4, "accidental": "natural", "type": "quarter", "dots": 0, "tie": null},
+          {"kind": "note", "step": "C", "octave": 5, "accidental": "double-sharp", "type": "quarter", "dots": 0, "tie": null},
+          {"kind": "note", "step": "E", "octave": 5, "accidental": "double-flat", "type": "quarter", "dots": 0, "tie": null},
+          {"kind": "note", "step": "A", "octave": 4, "accidental": "flat", "type": "quarter", "dots": 0, "tie": null}
+        ]
+      }
+    ]
+  }
+}

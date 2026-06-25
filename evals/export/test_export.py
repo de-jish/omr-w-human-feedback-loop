@@ -27,6 +27,12 @@ CASES_DIR = Path(__file__).parent / "cases"
 def stream_facts(m21score) -> dict[str, Any]:
     """Normalize a music21 Score into the stable, comparable facts the export
     mapping is responsible for producing."""
+    md = m21score.metadata
+    metadata = (
+        {"title": md.title, "composer": md.composer if md.composer else None}
+        if md is not None and md.title
+        else None
+    )
     part = m21score.parts[0]
     measures: list[dict[str, Any]] = []
     for m in part.getElementsByClass("Measure"):
@@ -65,7 +71,7 @@ def stream_facts(m21score) -> dict[str, Any]:
                 "events": events,
             }
         )
-    return {"measures": measures}
+    return {"metadata": metadata, "measures": measures}
 
 
 _CASES = load_cases(CASES_DIR)

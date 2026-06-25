@@ -24,6 +24,7 @@
     }
   },
   "expected": {
+    "metadata": null,
     "measures": [
       {
         "number": 1,

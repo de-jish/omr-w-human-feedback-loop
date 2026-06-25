@@ -1,0 +1,35 @@
+{
+  "name": "metadata_title_composer",
+  "description": "Score metadata (title and composer) is carried onto the exported music21 Score.",
+  "function": "score_to_stream",
+  "input": {
+    "score": {
+      "metadata": {"title": "Prelude", "composer": "J.S. Bach"},
+      "measures": [
+        {
+          "number": 1,
+          "clef": {"sign": "F", "line": 4},
+          "key": {"fifths": 0},
+          "time": {"numerator": 4, "denominator": 4},
+          "events": [
+            {"kind": "note", "pitch": {"step": "C", "octave": 3}, "duration": {"type": "whole"}}
+          ]
+        }
+      ]
+    }
+  },
+  "expected": {
+    "metadata": {"title": "Prelude", "composer": "J.S. Bach"},
+    "measures": [
+      {
+        "number": 1,
+        "clef": {"sign": "F", "line": 4},
+        "key_fifths": 0,
+        "time": {"numerator": 4, "denominator": 4},
+        "events": [
+          {"kind": "note", "step": "C", "octave": 3, "accidental": null, "type": "whole", "dots": 0, "tie": null}
+        ]
+      }
+    ]
+  }
+}

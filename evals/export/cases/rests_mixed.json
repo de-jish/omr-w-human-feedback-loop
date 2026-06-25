@@ -1,0 +1,40 @@
+{
+  "name": "rests_mixed",
+  "description": "A 4/4 measure mixing rests and notes (eighth rest, eighth note, half note, quarter rest) exports rests and notes in order.",
+  "function": "score_to_stream",
+  "input": {
+    "score": {
+      "measures": [
+        {
+          "number": 1,
+          "clef": {"sign": "F", "line": 4},
+          "key": {"fifths": 0},
+          "time": {"numerator": 4, "denominator": 4},
+          "events": [
+            {"kind": "rest", "duration": {"type": "eighth"}},
+            {"kind": "note", "pitch": {"step": "C", "octave": 3}, "duration": {"type": "eighth"}},
+            {"kind": "note", "pitch": {"step": "D", "octave": 3}, "duration": {"type": "half"}},
+            {"kind": "rest", "duration": {"type": "quarter"}}
+          ]
+        }
+      ]
+    }
+  },
+  "expected": {
+    "metadata": null,
+    "measures": [
+      {
+        "number": 1,
+        "clef": {"sign": "F", "line": 4},
+        "key_fifths": 0,
+        "time": {"numerator": 4, "denominator": 4},
+        "events": [
+          {"kind": "rest", "type": "eighth", "dots": 0},
+          {"kind": "note", "step": "C", "octave": 3, "accidental": null, "type": "eighth", "dots": 0, "tie": null},
+          {"kind": "note", "step": "D", "octave": 3, "accidental": null, "type": "half", "dots": 0, "tie": null},
+          {"kind": "rest", "type": "quarter", "dots": 0}
+        ]
+      }
+    ]
+  }
+}
