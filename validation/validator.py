@@ -11,7 +11,7 @@ from __future__ import annotations
 
 from fractions import Fraction
 
-from score import Measure, MeasureContext
+from model.score import Measure, MeasureContext
 from validation.report import MeasureReport
 
 

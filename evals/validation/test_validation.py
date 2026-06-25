@@ -13,7 +13,7 @@ from typing import Any, Callable
 
 import pytest
 
-from score import Measure, MeasureContext
+from model.score import Measure, MeasureContext
 from validation import validate_measure
 from evals.harness import load_cases
 

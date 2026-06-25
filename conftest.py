@@ -1,4 +1,4 @@
-"""Make the repo root importable so evals can `from score import ...` and
+"""Make the repo root importable so evals can `from model.score import ...` and
 `from validation import ...` no matter where pytest is invoked from."""
 
 import sys
