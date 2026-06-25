@@ -14,8 +14,10 @@ generator, so **MusicXML is the interchange format across the whole app** and th
 internal model below is the working representation in between.
 
 **Current phase:** core pipeline taking shape. Done: `model/` (the contract),
-`validation/` (rhythm validator), `export/` (MusicXML). Next: recognition or
-correction. There is no CV model yet, and that is fine.
+`validation/` (rhythm validator), `export/` (MusicXML), and `correction/`'s
+deterministic edit core (the utterance->EditOp LLM boundary is stubbed). Next:
+recognition, or the `correction/` LLM boundary. There is no CV model yet, and
+that is fine.
 
 ## Scope (hold this line)
 
@@ -50,7 +52,7 @@ contract plus `model/`, never the whole repo.
 | `segmentation/` | page image                     | list of single-staff strip images        |
 | `recognition/`  | staff strip image              | `Measure` objects (CV lives here, later)  |
 | `validation/`   | `Measure` + `MeasureContext`   | validity report (sums? where it overflows)|
-| `correction/`   | user utterance + `Measure`     | structured edit -> updated `Measure`      |
+| `correction/`   | `EditOp` + `Measure` (core); utterance + `Measure` (boundary, stub) | new `Measure` (core); `EditOp` (boundary) |
 | `export/`       | `Score`                        | MusicXML (via music21)                    |
 | `evals/`        | -                              | eval harness + JSON cases, per module     |
 

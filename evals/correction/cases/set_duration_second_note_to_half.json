@@ -1,0 +1,130 @@
+{
+  "name": "set_duration_second_note_to_half",
+  "description": "set_duration on event 1 replaces the second quarter note with a half note; pitches and the other events are untouched.",
+  "function": "apply_edit",
+  "input": {
+    "measure": {
+      "number": 3,
+      "events": [
+        {
+          "kind": "note",
+          "pitch": {
+            "step": "C",
+            "octave": 3,
+            "accidental": null
+          },
+          "duration": {
+            "type": "quarter",
+            "dots": 0,
+            "quarter_length": "1"
+          },
+          "tie": null,
+          "confidence": null,
+          "source": null
+        },
+        {
+          "kind": "note",
+          "pitch": {
+            "step": "D",
+            "octave": 3,
+            "accidental": null
+          },
+          "duration": {
+            "type": "quarter",
+            "dots": 0,
+            "quarter_length": "1"
+          },
+          "tie": null,
+          "confidence": null,
+          "source": null
+        },
+        {
+          "kind": "note",
+          "pitch": {
+            "step": "E",
+            "octave": 3,
+            "accidental": null
+          },
+          "duration": {
+            "type": "quarter",
+            "dots": 0,
+            "quarter_length": "1"
+          },
+          "tie": null,
+          "confidence": null,
+          "source": null
+        }
+      ],
+      "clef": null,
+      "key": null,
+      "time": null,
+      "confidence": null,
+      "total_quarter_length": "3"
+    },
+    "op": {
+      "op": "set_duration",
+      "index": 1,
+      "duration": {
+        "type": "half"
+      }
+    }
+  },
+  "expected": {
+    "number": 3,
+    "events": [
+      {
+        "kind": "note",
+        "pitch": {
+          "step": "C",
+          "octave": 3,
+          "accidental": null
+        },
+        "duration": {
+          "type": "quarter",
+          "dots": 0,
+          "quarter_length": "1"
+        },
+        "tie": null,
+        "confidence": null,
+        "source": null
+      },
+      {
+        "kind": "note",
+        "pitch": {
+          "step": "D",
+          "octave": 3,
+          "accidental": null
+        },
+        "duration": {
+          "type": "half",
+          "dots": 0,
+          "quarter_length": "2"
+        },
+        "tie": null,
+        "confidence": null,
+        "source": null
+      },
+      {
+        "kind": "note",
+        "pitch": {
+          "step": "E",
+          "octave": 3,
+          "accidental": null
+        },
+        "duration": {
+          "type": "quarter",
+          "dots": 0,
+          "quarter_length": "1"
+        },
+        "tie": null,
+        "confidence": null,
+        "source": null
+      }
+    ],
+    "clef": null,
+    "key": null,
+    "time": null,
+    "confidence": null,
+    "total_quarter_length": "4"
+  }
+}

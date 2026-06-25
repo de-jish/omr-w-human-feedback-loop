@@ -1,0 +1,111 @@
+{
+  "name": "insert_rest_in_middle",
+  "description": "insert_event at index 1 places a quarter rest before the second note; existing events shift right.",
+  "function": "apply_edit",
+  "input": {
+    "measure": {
+      "number": 2,
+      "events": [
+        {
+          "kind": "note",
+          "pitch": {
+            "step": "C",
+            "octave": 3,
+            "accidental": null
+          },
+          "duration": {
+            "type": "quarter",
+            "dots": 0,
+            "quarter_length": "1"
+          },
+          "tie": null,
+          "confidence": null,
+          "source": null
+        },
+        {
+          "kind": "note",
+          "pitch": {
+            "step": "E",
+            "octave": 3,
+            "accidental": null
+          },
+          "duration": {
+            "type": "quarter",
+            "dots": 0,
+            "quarter_length": "1"
+          },
+          "tie": null,
+          "confidence": null,
+          "source": null
+        }
+      ],
+      "clef": null,
+      "key": null,
+      "time": null,
+      "confidence": null,
+      "total_quarter_length": "2"
+    },
+    "op": {
+      "op": "insert_event",
+      "index": 1,
+      "event": {
+        "kind": "rest",
+        "duration": {
+          "type": "quarter"
+        }
+      }
+    }
+  },
+  "expected": {
+    "number": 2,
+    "events": [
+      {
+        "kind": "note",
+        "pitch": {
+          "step": "C",
+          "octave": 3,
+          "accidental": null
+        },
+        "duration": {
+          "type": "quarter",
+          "dots": 0,
+          "quarter_length": "1"
+        },
+        "tie": null,
+        "confidence": null,
+        "source": null
+      },
+      {
+        "kind": "rest",
+        "duration": {
+          "type": "quarter",
+          "dots": 0,
+          "quarter_length": "1"
+        },
+        "confidence": null,
+        "source": null
+      },
+      {
+        "kind": "note",
+        "pitch": {
+          "step": "E",
+          "octave": 3,
+          "accidental": null
+        },
+        "duration": {
+          "type": "quarter",
+          "dots": 0,
+          "quarter_length": "1"
+        },
+        "tie": null,
+        "confidence": null,
+        "source": null
+      }
+    ],
+    "clef": null,
+    "key": null,
+    "time": null,
+    "confidence": null,
+    "total_quarter_length": "3"
+  }
+}

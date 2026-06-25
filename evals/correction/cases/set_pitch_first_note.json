@@ -1,0 +1,100 @@
+{
+  "name": "set_pitch_first_note",
+  "description": "set_pitch on event 0 replaces only the pitch (now G2 with a drawn sharp); its duration is preserved and the second note is untouched.",
+  "function": "apply_edit",
+  "input": {
+    "measure": {
+      "number": 1,
+      "events": [
+        {
+          "kind": "note",
+          "pitch": {
+            "step": "A",
+            "octave": 3,
+            "accidental": null
+          },
+          "duration": {
+            "type": "eighth",
+            "dots": 0,
+            "quarter_length": "1/2"
+          },
+          "tie": null,
+          "confidence": null,
+          "source": null
+        },
+        {
+          "kind": "note",
+          "pitch": {
+            "step": "B",
+            "octave": 3,
+            "accidental": null
+          },
+          "duration": {
+            "type": "eighth",
+            "dots": 0,
+            "quarter_length": "1/2"
+          },
+          "tie": null,
+          "confidence": null,
+          "source": null
+        }
+      ],
+      "clef": null,
+      "key": null,
+      "time": null,
+      "confidence": null,
+      "total_quarter_length": "1"
+    },
+    "op": {
+      "op": "set_pitch",
+      "index": 0,
+      "pitch": {
+        "step": "G",
+        "octave": 2,
+        "accidental": "sharp"
+      }
+    }
+  },
+  "expected": {
+    "number": 1,
+    "events": [
+      {
+        "kind": "note",
+        "pitch": {
+          "step": "G",
+          "octave": 2,
+          "accidental": "sharp"
+        },
+        "duration": {
+          "type": "eighth",
+          "dots": 0,
+          "quarter_length": "1/2"
+        },
+        "tie": null,
+        "confidence": null,
+        "source": null
+      },
+      {
+        "kind": "note",
+        "pitch": {
+          "step": "B",
+          "octave": 3,
+          "accidental": null
+        },
+        "duration": {
+          "type": "eighth",
+          "dots": 0,
+          "quarter_length": "1/2"
+        },
+        "tie": null,
+        "confidence": null,
+        "source": null
+      }
+    ],
+    "clef": null,
+    "key": null,
+    "time": null,
+    "confidence": null,
+    "total_quarter_length": "1"
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "name": "insert_note_append_at_end",
+  "description": "insert_event with index == len(events) appends a half note after the last event.",
+  "function": "apply_edit",
+  "input": {
+    "measure": {
+      "number": 4,
+      "events": [
+        {
+          "kind": "note",
+          "pitch": {
+            "step": "C",
+            "octave": 3,
+            "accidental": null
+          },
+          "duration": {
+            "type": "half",
+            "dots": 0,
+            "quarter_length": "2"
+          },
+          "tie": null,
+          "confidence": null,
+          "source": null
+        }
+      ],
+      "clef": null,
+      "key": null,
+      "time": null,
+      "confidence": null,
+      "total_quarter_length": "2"
+    },
+    "op": {
+      "op": "insert_event",
+      "index": 1,
+      "event": {
+        "kind": "note",
+        "pitch": {
+          "step": "D",
+          "octave": 3
+        },
+        "duration": {
+          "type": "half"
+        }
+      }
+    }
+  },
+  "expected": {
+    "number": 4,
+    "events": [
+      {
+        "kind": "note",
+        "pitch": {
+          "step": "C",
+          "octave": 3,
+          "accidental": null
+        },
+        "duration": {
+          "type": "half",
+          "dots": 0,
+          "quarter_length": "2"
+        },
+        "tie": null,
+        "confidence": null,
+        "source": null
+      },
+      {
+        "kind": "note",
+        "pitch": {
+          "step": "D",
+          "octave": 3,
+          "accidental": null
+        },
+        "duration": {
+          "type": "half",
+          "dots": 0,
+          "quarter_length": "2"
+        },
+        "tie": null,
+        "confidence": null,
+        "source": null
+      }
+    ],
+    "clef": null,
+    "key": null,
+    "time": null,
+    "confidence": null,
+    "total_quarter_length": "4"
+  }
+}

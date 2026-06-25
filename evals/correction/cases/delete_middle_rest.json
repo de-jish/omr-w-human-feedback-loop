@@ -1,0 +1,105 @@
+{
+  "name": "delete_middle_rest",
+  "description": "delete_event on event 1 removes the rest; the two notes close up and reindex.",
+  "function": "apply_edit",
+  "input": {
+    "measure": {
+      "number": 5,
+      "events": [
+        {
+          "kind": "note",
+          "pitch": {
+            "step": "C",
+            "octave": 3,
+            "accidental": null
+          },
+          "duration": {
+            "type": "quarter",
+            "dots": 0,
+            "quarter_length": "1"
+          },
+          "tie": null,
+          "confidence": null,
+          "source": null
+        },
+        {
+          "kind": "rest",
+          "duration": {
+            "type": "quarter",
+            "dots": 0,
+            "quarter_length": "1"
+          },
+          "confidence": null,
+          "source": null
+        },
+        {
+          "kind": "note",
+          "pitch": {
+            "step": "E",
+            "octave": 3,
+            "accidental": null
+          },
+          "duration": {
+            "type": "quarter",
+            "dots": 0,
+            "quarter_length": "1"
+          },
+          "tie": null,
+          "confidence": null,
+          "source": null
+        }
+      ],
+      "clef": null,
+      "key": null,
+      "time": null,
+      "confidence": null,
+      "total_quarter_length": "3"
+    },
+    "op": {
+      "op": "delete_event",
+      "index": 1
+    }
+  },
+  "expected": {
+    "number": 5,
+    "events": [
+      {
+        "kind": "note",
+        "pitch": {
+          "step": "C",
+          "octave": 3,
+          "accidental": null
+        },
+        "duration": {
+          "type": "quarter",
+          "dots": 0,
+          "quarter_length": "1"
+        },
+        "tie": null,
+        "confidence": null,
+        "source": null
+      },
+      {
+        "kind": "note",
+        "pitch": {
+          "step": "E",
+          "octave": 3,
+          "accidental": null
+        },
+        "duration": {
+          "type": "quarter",
+          "dots": 0,
+          "quarter_length": "1"
+        },
+        "tie": null,
+        "confidence": null,
+        "source": null
+      }
+    ],
+    "clef": null,
+    "key": null,
+    "time": null,
+    "confidence": null,
+    "total_quarter_length": "2"
+  }
+}
