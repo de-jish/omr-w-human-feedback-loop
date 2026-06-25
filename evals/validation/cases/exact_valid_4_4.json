@@ -1,0 +1,31 @@
+{
+  "name": "exact_valid_4_4",
+  "description": "A 4/4 bass-clef measure (quarter, eighth, eighth, half) sums to exactly 4 quarter-notes and is valid.",
+  "function": "validate_measure",
+  "input": {
+    "measure": {
+      "number": 1,
+      "events": [
+        {"kind": "note", "pitch": {"step": "C", "octave": 3}, "duration": {"type": "quarter"}},
+        {"kind": "note", "pitch": {"step": "D", "octave": 3}, "duration": {"type": "eighth"}},
+        {"kind": "note", "pitch": {"step": "E", "octave": 3}, "duration": {"type": "eighth"}},
+        {"kind": "note", "pitch": {"step": "F", "octave": 3}, "duration": {"type": "half"}}
+      ]
+    },
+    "context": {
+      "clef": {"sign": "F", "line": 4},
+      "key": {"fifths": 0},
+      "time": {"numerator": 4, "denominator": 4}
+    }
+  },
+  "expected": {
+    "measure_number": 1,
+    "status": "valid",
+    "valid": true,
+    "expected_quarter_length": "4",
+    "actual_quarter_length": "4",
+    "difference": "0",
+    "overflow_event_index": null,
+    "message": "measure 1: 4 == 4 quarter-notes, complete"
+  }
+}

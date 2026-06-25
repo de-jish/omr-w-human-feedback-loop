@@ -1,0 +1,31 @@
+{
+  "name": "overflow_3_4",
+  "description": "A 3/4 measure with four quarter-notes overflows by 1 quarter-note; the fourth event (index 3) is the first to spill past the bar.",
+  "function": "validate_measure",
+  "input": {
+    "measure": {
+      "number": 7,
+      "events": [
+        {"kind": "note", "pitch": {"step": "G", "octave": 2}, "duration": {"type": "quarter"}},
+        {"kind": "note", "pitch": {"step": "A", "octave": 2}, "duration": {"type": "quarter"}},
+        {"kind": "note", "pitch": {"step": "B", "octave": 2}, "duration": {"type": "quarter"}},
+        {"kind": "note", "pitch": {"step": "C", "octave": 3}, "duration": {"type": "quarter"}}
+      ]
+    },
+    "context": {
+      "clef": {"sign": "F", "line": 4},
+      "key": {"fifths": 0},
+      "time": {"numerator": 3, "denominator": 4}
+    }
+  },
+  "expected": {
+    "measure_number": 7,
+    "status": "overflow",
+    "valid": false,
+    "expected_quarter_length": "3",
+    "actual_quarter_length": "4",
+    "difference": "1",
+    "overflow_event_index": 3,
+    "message": "measure 7: 4 > 3 quarter-notes, overflows by 1 at event 3"
+  }
+}

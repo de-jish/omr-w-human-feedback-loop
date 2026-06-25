@@ -1,0 +1,29 @@
+{
+  "name": "underflow_4_4",
+  "description": "A 4/4 measure holding only a dotted-half plus a rest sums to 7/2 quarter-notes, short of a full bar by 1/2.",
+  "function": "validate_measure",
+  "input": {
+    "measure": {
+      "number": 12,
+      "events": [
+        {"kind": "note", "pitch": {"step": "D", "octave": 3}, "duration": {"type": "half", "dots": 1}},
+        {"kind": "rest", "duration": {"type": "eighth"}}
+      ]
+    },
+    "context": {
+      "clef": {"sign": "F", "line": 4},
+      "key": {"fifths": 0},
+      "time": {"numerator": 4, "denominator": 4}
+    }
+  },
+  "expected": {
+    "measure_number": 12,
+    "status": "underflow",
+    "valid": false,
+    "expected_quarter_length": "4",
+    "actual_quarter_length": "7/2",
+    "difference": "-1/2",
+    "overflow_event_index": null,
+    "message": "measure 12: 7/2 < 4 quarter-notes, short by 1/2"
+  }
+}
