@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "omr-hfl"
+version = "0.1.0"
+description = "Optical Music Recognition with a human-in-the-loop correction workflow (monophonic single-staff)."
+requires-python = ">=3.11"
+
+# Runtime dependencies. Lower bounds are the floors we rely on; the light upper
+# caps guard against a surprise major-version break. Bump them deliberately.
+dependencies = [
+    "pydantic>=2.0,<3",
+    "music21>=9.1,<11",
+]
+
+[project.optional-dependencies]
+# Install with:  pip install -e ".[dev]"
+dev = [
+    "pytest>=8.0",
+]
+
+# The importable packages live flat at the repo root (no src/ layout).
+[tool.setuptools.packages.find]
+include = ["model*", "validation*", "export*", "evals*"]
+
+[tool.pytest.ini_options]
+# pythonpath makes the repo root importable during tests, so evals can do
+# `from model.score import ...` no matter where pytest is invoked. This replaces
+# the old conftest.py sys.path shim, which can now be deleted.
+pythonpath = ["."]
+testpaths = ["evals"]

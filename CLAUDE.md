@@ -13,8 +13,9 @@ a larger music web app. Its output (MusicXML) feeds a separate cello fingering
 generator, so **MusicXML is the interchange format across the whole app** and the
 internal model below is the working representation in between.
 
-**Current phase:** notebook prototype. We are building the module skeleton and
-the rhythm validator first. There is no CV model yet, and that is fine.
+**Current phase:** core pipeline taking shape. Done: `model/` (the contract),
+`validation/` (rhythm validator), `export/` (MusicXML). Next: recognition or
+correction. There is no CV model yet, and that is fine.
 
 ## Scope (hold this line)
 
