@@ -1,0 +1,39 @@
+{
+  "name": "single_measure_basic",
+  "description": "One 4/4 bass-clef measure (quarter, eighth, eighth, half) exports its clef, key, time and notes one-to-one.",
+  "function": "score_to_stream",
+  "input": {
+    "score": {
+      "measures": [
+        {
+          "number": 1,
+          "clef": {"sign": "F", "line": 4},
+          "key": {"fifths": 0},
+          "time": {"numerator": 4, "denominator": 4},
+          "events": [
+            {"kind": "note", "pitch": {"step": "C", "octave": 3}, "duration": {"type": "quarter"}},
+            {"kind": "note", "pitch": {"step": "D", "octave": 3}, "duration": {"type": "eighth"}},
+            {"kind": "note", "pitch": {"step": "E", "octave": 3}, "duration": {"type": "eighth"}},
+            {"kind": "note", "pitch": {"step": "F", "octave": 3}, "duration": {"type": "half"}}
+          ]
+        }
+      ]
+    }
+  },
+  "expected": {
+    "measures": [
+      {
+        "number": 1,
+        "clef": {"sign": "F", "line": 4},
+        "key_fifths": 0,
+        "time": {"numerator": 4, "denominator": 4},
+        "events": [
+          {"kind": "note", "step": "C", "octave": 3, "accidental": null, "type": "quarter", "dots": 0, "tie": null},
+          {"kind": "note", "step": "D", "octave": 3, "accidental": null, "type": "eighth", "dots": 0, "tie": null},
+          {"kind": "note", "step": "E", "octave": 3, "accidental": null, "type": "eighth", "dots": 0, "tie": null},
+          {"kind": "note", "step": "F", "octave": 3, "accidental": null, "type": "half", "dots": 0, "tie": null}
+        ]
+      }
+    ]
+  }
+}

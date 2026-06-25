@@ -1,0 +1,48 @@
+{
+  "name": "accidental_and_tie_across_barline",
+  "description": "Treble clef, one sharp. An F#5 whole note tied across the barline; measure 2 inherits clef/key/time and carries the tie stop and the drawn sharp glyph.",
+  "function": "score_to_stream",
+  "input": {
+    "score": {
+      "measures": [
+        {
+          "number": 1,
+          "clef": {"sign": "G", "line": 2},
+          "key": {"fifths": 1},
+          "time": {"numerator": 4, "denominator": 4},
+          "events": [
+            {"kind": "note", "pitch": {"step": "F", "octave": 5, "accidental": "sharp"}, "duration": {"type": "whole"}, "tie": "start"}
+          ]
+        },
+        {
+          "number": 2,
+          "events": [
+            {"kind": "note", "pitch": {"step": "F", "octave": 5, "accidental": "sharp"}, "duration": {"type": "whole"}, "tie": "stop"}
+          ]
+        }
+      ]
+    }
+  },
+  "expected": {
+    "measures": [
+      {
+        "number": 1,
+        "clef": {"sign": "G", "line": 2},
+        "key_fifths": 1,
+        "time": {"numerator": 4, "denominator": 4},
+        "events": [
+          {"kind": "note", "step": "F", "octave": 5, "accidental": "sharp", "type": "whole", "dots": 0, "tie": "start"}
+        ]
+      },
+      {
+        "number": 2,
+        "clef": null,
+        "key_fifths": null,
+        "time": null,
+        "events": [
+          {"kind": "note", "step": "F", "octave": 5, "accidental": "sharp", "type": "whole", "dots": 0, "tie": "stop"}
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "name": "dots_and_clef_change",
+  "description": "A dotted half plus a quarter in measure 1, then a mid-piece clef change to tenor in measure 2 (which declares only the new clef and inherits key/time).",
+  "function": "score_to_stream",
+  "input": {
+    "score": {
+      "measures": [
+        {
+          "number": 1,
+          "clef": {"sign": "F", "line": 4},
+          "key": {"fifths": 0},
+          "time": {"numerator": 4, "denominator": 4},
+          "events": [
+            {"kind": "note", "pitch": {"step": "D", "octave": 3}, "duration": {"type": "half", "dots": 1}},
+            {"kind": "note", "pitch": {"step": "E", "octave": 3}, "duration": {"type": "quarter"}}
+          ]
+        },
+        {
+          "number": 2,
+          "clef": {"sign": "C", "line": 4},
+          "events": [
+            {"kind": "note", "pitch": {"step": "F", "octave": 3}, "duration": {"type": "whole"}}
+          ]
+        }
+      ]
+    }
+  },
+  "expected": {
+    "measures": [
+      {
+        "number": 1,
+        "clef": {"sign": "F", "line": 4},
+        "key_fifths": 0,
+        "time": {"numerator": 4, "denominator": 4},
+        "events": [
+          {"kind": "note", "step": "D", "octave": 3, "accidental": null, "type": "half", "dots": 1, "tie": null},
+          {"kind": "note", "step": "E", "octave": 3, "accidental": null, "type": "quarter", "dots": 0, "tie": null}
+        ]
+      },
+      {
+        "number": 2,
+        "clef": {"sign": "C", "line": 4},
+        "key_fifths": null,
+        "time": null,
+        "events": [
+          {"kind": "note", "step": "F", "octave": 3, "accidental": null, "type": "whole", "dots": 0, "tie": null}
+        ]
+      }
+    ]
+  }
+}
